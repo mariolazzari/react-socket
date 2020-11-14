@@ -1,7 +1,5 @@
 const router = require("express").Router();
 
-router.get("/", (req, res) => {
-  res.json({ message: "Server is running." });
-});
+router.use("/api/test", require("./test"));
 
 module.exports = router;

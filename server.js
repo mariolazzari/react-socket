@@ -15,4 +15,8 @@ const server = app.listen(EXPRESS_PORT, () => {
   console.log(`Server started on ${EXPRESS_URI}:${EXPRESS_PORT}`);
 });
 
+// create socket io
 createSocket(server);
+
+// updater
+require("./update");
