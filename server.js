@@ -1,19 +1,18 @@
 const express = require("express");
 const dotenv = require("dotenv");
-const socketIo = require("socket.io");
+const { createSocket } = require("./utils/socket");
 
-// dserver settings
+// Enviroment vars
 dotenv.config();
-const { EXPRESS_PORT, EXPRESS_URI } = process.env;
+const { EXPRESS_URI, EXPRESS_PORT } = process.env;
 
-// express server
+// Express settings
 const app = express();
-app.use(express.json());
 app.use(require("./routes"));
 
-const server = app.listen(EXPRESS_PORT, () =>
-  console.log(`Server started on ${EXPRESS_URI}:${EXPRESS_PORT}`)
-);
+// start server
+const server = app.listen(EXPRESS_PORT, () => {
+  console.log(`Server started on ${EXPRESS_URI}:${EXPRESS_PORT}`);
+});
 
-// socket server
-const io = socketIo(server);
+createSocket(server);
